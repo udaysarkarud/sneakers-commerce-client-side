@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeAppAuth from "../Firebase/firebase.init";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import swal from 'sweetalert';
 
 initializeAppAuth();
@@ -37,7 +37,9 @@ const useFirebaseAuth = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential.user)
+                const newUserProfile = { email, displayName: name }
+                setUser(newUserProfile)
+                updateSingupUserName(name)
                 swal({
                     title: "Congratulations!",
                     text: "Your account created successfully",
@@ -50,6 +52,17 @@ const useFirebaseAuth = () => {
                 console.log(error.code)
             })
             .finally(() => setIsloading(false));
+    }
+
+    //Update Singup Email Password User's DisplayName
+    const updateSingupUserName = (profilename) => {
+        updateProfile(auth.currentUser, {
+            displayName: profilename,
+        }).then(() => {
+
+        }).catch((error) => {
+
+        });
     }
 
     // Google Singin With History Redirect
@@ -87,6 +100,7 @@ const useFirebaseAuth = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                console.log(user)
             } else {
                 setUser({})
             }
@@ -97,7 +111,10 @@ const useFirebaseAuth = () => {
         emailPassSingin,
         emailPassRegister,
         googleSingin,
-        userSignOut
+        userSignOut,
+        user,
+        authError,
+        isLoading,
     }
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hook/useAuth';
 import { useHistory, useLocation } from 'react-router';
 const Header = () => {
-    const { userSignOut } = useAuth()
+    const { userSignOut, user, isLoading, } = useAuth()
     const history = useHistory()
     const redirect_url = '/home'
 
@@ -19,7 +19,14 @@ const Header = () => {
             <Link to='/registration'>Registration</Link>
 
             <span>||</span>
-            <button onClick={singoutUser}>LogOut</button>
+            {
+                user.email &&
+                <>
+                    <span>{user.displayName}</span>
+                    <button onClick={singoutUser}>LogOut</button>
+                </>
+            }
+
         </div>
     );
 };
