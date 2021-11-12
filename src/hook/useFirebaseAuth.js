@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import initializeAppAuth from "../Firebase/firebase.init";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, getIdToken, signOut } from "firebase/auth";
 import swal from 'sweetalert';
+import axios from "axios";
 
 initializeAppAuth();
 const useFirebaseAuth = () => {
-    const [user, setUser] = useState({});
+    const [userProfile, setUserProfile] = useState({});
     const [authError, setAuthError] = useState('');
     const [isLoading, setIsloading] = useState(true)
+    const [userRole, setUserRole] = useState({})
+    const [authToken, setAuthToken] = useState('')
 
 
     const auth = getAuth();
@@ -16,15 +19,26 @@ const useFirebaseAuth = () => {
     // Singin Using Email and Password
     const emailPassSingin = (loginInfo) => {
         setIsloading(true);
-        const { email, password } = loginInfo.data;
-
-        signInWithEmailAndPassword(auth, email, password)
+        const { data, history, redirect_url } = loginInfo;
+        signInWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
-                console.log(userCredential.user)
+                //No Error Set
+                setAuthError('')
+
+                //UserData for collection
+                const userData = { email: userCredential?.user?.email, displayName: userCredential?.user?.displayName }
+                userDatatoDb(userData)
+
+                //User redirect
+                history.push(redirect_url)
             })
             .catch((error) => {
                 setAuthError(error.code)
-                console.log(error.code)
+                swal({
+                    title: `Sorry! ${error.code}`,
+                    text: `Please try again with valid email and password`,
+                    icon: "warning",
+                })
             })
             .finally(() => setIsloading(false));
 
@@ -37,14 +51,28 @@ const useFirebaseAuth = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                //No Error Set
+                setAuthError('')
+
+                //UserData for collection
+                const userData = { email, displayName: name }
+                userDatatoDb(userData)
+
+                //DisplayName show for reg
                 const newUserProfile = { email, displayName: name }
-                setUser(newUserProfile)
+                setUserProfile(newUserProfile)
+
+                //Update displayname to firebase
                 updateSingupUserName(name)
+
+                //successfu Alart for singup
                 swal({
                     title: "Congratulations!",
                     text: "Your account created successfully",
                     icon: "success",
                 })
+
+                //User redirect
                 userRouting.push('/')
             })
             .catch((error) => {
@@ -72,7 +100,14 @@ const useFirebaseAuth = () => {
 
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-                console.log(result.user)
+                //No Error Set
+                setAuthError('')
+
+                //UserData for collection
+                const userData = { email: result?.user?.email, displayName: result?.user?.displayName }
+                userDatatoDb(userData)
+
+                //User redirect
                 history.push(redirect_url)
             }).catch((error) => {
                 setAuthError(error.code)
@@ -87,7 +122,10 @@ const useFirebaseAuth = () => {
         const { history, redirect_url } = userRouting;
 
         signOut(auth).then(() => {
-            console.log('Sing Out Done')
+            //No Error Set
+            setAuthError('')
+
+            //User redirect
             history.push(redirect_url)
         }).catch((error) => {
             setAuthError(error.code)
@@ -99,22 +137,46 @@ const useFirebaseAuth = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user)
-                console.log(user)
+                setUserProfile(user)
+                getIdToken(user)
+                    .then((idToken) => {
+                        setAuthToken(idToken);
+                    })
             } else {
-                setUser({})
+                setUserProfile({})
             }
             setIsloading(false)
         });
-    }, [])
+    }, [auth])
+
+
+    //UserData Store on Db
+    const userDatatoDb = (userInfo) => {
+        console.log(userInfo)
+        axios.put('http://localhost:5000/usersdata', userInfo)
+            .then(res => {
+                console.log(res)
+            })
+    }
+
+    //Check User Role
+    useEffect(() => {
+        axios.get(`http://localhost:5000/usersdata/${userProfile.email}`)
+            .then(res => {
+                setUserRole(res.data)
+            })
+    }, [userProfile.email])
+
     return {
         emailPassSingin,
         emailPassRegister,
         googleSingin,
         userSignOut,
-        user,
+        userProfile,
         authError,
         isLoading,
+        userRole,
+        authToken
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router';
 import useAuth from './../../hook/useAuth';
+import swal from 'sweetalert';
 
 const Login = () => {
     const { emailPassSingin, googleSingin } = useAuth();
@@ -13,7 +14,17 @@ const Login = () => {
 
     const onSubmit = data => {
         const logingData = { data, history, redirect_url };
-        emailPassSingin(logingData);
+        if (data.password.length >= 8) {
+            emailPassSingin(logingData);
+        }
+        else {
+            swal({
+                title: "Check Password!",
+                text: "Use right password which is  8 or more than 8 characters",
+                icon: "warning",
+            })
+        }
+
     };
 
     const loginWithGoogle = () => {
