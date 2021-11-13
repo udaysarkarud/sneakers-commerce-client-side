@@ -11,6 +11,8 @@ const Header = () => {
         const userRouting = { history, redirect_url }
         userSignOut(userRouting)
     }
+
+    console.log(process.env.REACT_APP_FIREANTS_APIKEY);
     return (
         <header>
             <div className="container">
