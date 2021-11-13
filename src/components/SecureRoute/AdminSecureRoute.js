@@ -22,7 +22,7 @@ const AdminSecureRoute = ({ children, ...rest }) => {
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/home",
+                            pathname: "/admindashboard",
                             state: { from: location }
                         }}
                     />

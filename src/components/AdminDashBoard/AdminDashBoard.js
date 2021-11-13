@@ -96,7 +96,7 @@ const AdminDashBoard = () => {
                                 <div>
                                     <Switch>
                                         <Route exact path={path}>
-                                            <h3>Admin Dash Board</h3>
+                                            <h1>DashBoard</h1>
                                         </Route>
 
                                         <Route path={`${path}/payments`}>
