@@ -65,12 +65,12 @@ const Registration = () => {
                                                 </div>
 
                                                 <div className="form-outline mb-4">
-                                                    <input {...register("password", { required: true })} placeholder="Password" className="form-control form-control-lg" required />
+                                                    <input {...register("password", { required: true })} placeholder="Password" className="form-control form-control-lg" type="password" required />
 
                                                 </div>
 
                                                 <div className="form-outline mb-4">
-                                                    <input {...register("repassword", { required: true })} placeholder="Re-Password" className="form-control form-control-lg" required />
+                                                    <input {...register("repassword", { required: true })} placeholder="Re-Password" className="form-control form-control-lg" type="password" required />
 
                                                 </div>
 

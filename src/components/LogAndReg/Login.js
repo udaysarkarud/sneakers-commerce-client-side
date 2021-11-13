@@ -62,7 +62,7 @@ const Login = () => {
                                                 </div>
 
                                                 <div className="form-outline mb-4">
-                                                    <input {...register("password", { required: true })} placeholder="password" className="form-control form-control-lg" required />
+                                                    <input {...register("password", { required: true })} placeholder="password" className="form-control form-control-lg" type="password" required />
 
                                                 </div>
 

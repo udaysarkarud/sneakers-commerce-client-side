@@ -83,11 +83,6 @@ const AdminDashBoard = () => {
                                                     <li>
                                                         <Link className="nav-link" to={`${url}/addreview`}><i className="bi bi-heart-half"></i> Add Reviews</Link>
                                                     </li>
-
-
-                                                    {/* <li>
-                                                        <Link className="nav-link" to={`${url}/manageusersrole`}><i className="bi bi-heart-half"></i> My Reviews</Link>
-                                                    </li> */}
                                                 </>
                                         }
 

@@ -1,44 +1,37 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react/cjs/react.development';
-import swal from 'sweetalert';
+import { Rating } from 'react-simple-star-rating';
 import useAuth from '../../../hook/useAuth';
-import { Rating, RatingView } from 'react-simple-star-rating'
+import swal from 'sweetalert';
+
 const AddNewReview = () => {
-    const { userProfile } = useAuth();
+    const { userProfile } = useAuth()
+
     const [clientRating, setClientRating] = useState(0);
     const handleRating = (rate) => {
         setClientRating(rate)
-
     }
 
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
+    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
         const reviewData = { ...data, clientImg: userProfile?.photoURL || 'https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png', clientRating }
         console.log(reviewData);
-        if (clientRating) {
-            axios.post('https://radiant-eyrie-71480.herokuapp.com/reviews', reviewData)
-                .then(res => {
-                    if (res.data.insertedId) {
-                        console.log(res.data.insertedId);
-                        reset();
-                        swal({
-                            title: "New Product Added Successfully",
-                            icon: "success",
-                        });
-                    }
-                })
-        } else {
-            reset();
-        }
+
+        axios.post('https://radiant-eyrie-71480.herokuapp.com/reviews', reviewData)
+            .then(res => {
+                swal("Great!", "Your Review Added successfully", "success");
+                reset()
+                console.log(res.data);
+            })
 
     };
+
+
     useEffect(() => {
         reset()
     }, [userProfile])
-
     return (
         <section className="container section-gap">
             <div className="row gx-4 gx-lg-5">
