@@ -41,7 +41,7 @@ const Login = () => {
                             <div className="card" style={{ borderRadius: "1rem" }}>
                                 <div className="row g-0">
                                     <div className="col-md-6 col-lg-5 d-none d-md-block">
-                                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/img1.jpg"
+                                        <img src="https://thumbs.dreamstime.com/b/sneaker-lover-vintage-blue-color-icon-flat-design-blue-background-sneaker-lover-vintage-blue-color-icon-flat-design-231291601.jpg"
                                             alt="login form" className="img-fluid" style={{ borderRadius: "1rem 0 0 1rem" }} />
                                     </div>
                                     <div className="col-md-6 col-lg-7 d-flex align-items-center">
