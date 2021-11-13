@@ -41,7 +41,7 @@ const Login = () => {
                             <div className="card" style={{ borderRadius: "1rem" }}>
                                 <div className="row g-0">
                                     <div className="col-md-6 col-lg-5 d-none d-md-block">
-                                        <img src="https://thumbs.dreamstime.com/b/sneaker-lover-vintage-blue-color-icon-flat-design-blue-background-sneaker-lover-vintage-blue-color-icon-flat-design-231291601.jpg"
+                                        <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/db58900c-c22d-4cdd-a66b-72e61af5b21f/jordan-6-17-23-shoes-kN83hh.png"
                                             alt="login form" className="img-fluid" style={{ borderRadius: "1rem 0 0 1rem" }} />
                                     </div>
                                     <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -50,7 +50,7 @@ const Login = () => {
                                             <form onSubmit={handleSubmit(onSubmit)}>
 
                                                 <div className="d-flex align-items-center mb-3 pb-1">
-                                                    <img className="img-fluid" src="http://sneaker.mallthemes.com/wp-content/uploads/2018/10/logo-1.png" alt="" width="153" />
+                                                    <img className="img-fluid" src="https://youthful-noyce-92cc85.netlify.app/logo-1.png" alt="" width="153" />
                                                 </div>
 
                                                 <h5 className="fw-normal mb-3 pb-3">Sign into

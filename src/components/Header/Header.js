@@ -19,7 +19,7 @@ const Header = () => {
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand text-white fw-bolder fs-2" to='/'>
-                            <img className="img-fluid" src="http://sneaker.mallthemes.com/wp-content/uploads/2018/10/logo-2-retina.png" alt="" width="153" />
+                            <img className="img-fluid" src="https://youthful-noyce-92cc85.netlify.app/logo-2-retina.png" alt="" width="153" />
                         </NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
