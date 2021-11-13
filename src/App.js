@@ -8,13 +8,9 @@ import Registration from './components/LogAndReg/Registration'
 import Blogs from './components/Blogs/Blogs'
 import SecureRoute from './components/SecureRoute/SecureRoute'
 import AdminDashBoard from './components/AdminDashBoard/AdminDashBoard'
-import UserDashBoard from './components/UserDashBoard/UserDashBoard'
-import AddNewProduct from './components/DashBoard/AddNewProduct/AddNewProduct';
 import ExploreShoes from './components/ExploreShoes/ExploreShoes';
-import SingleProductDetails from './components/SingleProductDetails/SingleProductDetails';
-import AddNewReview from './components/DashBoard/AddNewReview/AddNewReview';
-import AddNewBlog from './components/DashBoard/AddNewBlog/AddNewBlog';
 import Footer from './components/Footer/Footer';
+
 
 function App() {
   return (
@@ -32,22 +28,6 @@ function App() {
               <Home />
             </Route>
 
-            <Route path='/login'>
-              <Login />
-            </Route>
-
-            <Route path='/registration'>
-              <Registration />
-            </Route>
-
-            <Route path='/addnewproduct'>
-              <AddNewProduct />
-            </Route>
-
-            <Route path='/addnewblog'>
-              <AddNewBlog />
-            </Route>
-
             <Route path='/exploreshoes'>
               <ExploreShoes />
             </Route>
@@ -56,29 +36,20 @@ function App() {
               <Blogs />
             </Route>
 
+            <Route path='/login'>
+              <Login />
+            </Route>
 
-            <Route path='/productdetails/:pId'>
+            <Route path='/registration'>
+              <Registration />
+            </Route>
+
+            {/*  <SecureRoute path='/productdetails/:pId'>
               <SingleProductDetails />
-            </Route>
-
-
-
-            <Route path='/addnewreview'>
-              <AddNewReview />
-            </Route>
-
-            <SecureRoute path='/blogs'>
-              <Blogs />
-            </SecureRoute>
-
+            </SecureRoute> */}
 
             <SecureRoute path='/admindashboard'>
               <AdminDashBoard />
-            </SecureRoute>
-
-
-            <SecureRoute path='/userdashboard'>
-              <UserDashBoard />
             </SecureRoute>
 
           </Switch>

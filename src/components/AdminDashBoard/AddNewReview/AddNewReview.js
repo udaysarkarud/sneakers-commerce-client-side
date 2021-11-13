@@ -41,18 +41,12 @@ const AddNewReview = () => {
 
     return (
         <section className="container section-gap">
-            <div className="row">
-                <div className="col-xl-8 offset-xl-2">
-                    <div className="text-center ">
-                        <h1>Popular Tour</h1>
-                        <p>The World's Largest Selection of Holiday Lettings. Find The Perfect Escape. Discover our popular package and find your soul again.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="row gx-4 gx-lg-5 align-items-center">
-                <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src="https://i.pinimg.com/750x/fa/24/87/fa2487ad05c4a8e2437d6ed049ba48ca.jpg" alt="..." style={{ width: '400px' }} /></div>
+            <div className="row gx-4 gx-lg-5">
                 <div className="col-md-6">
+                    <div>
+                        <h1>Provide a Review</h1>
+                        <p>Please fill all informations fields to provide a review. Your review'll be great information for developing our service.</p>
+                    </div>
                     <form className="row g-3" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                         <div className="col-6">
                             <label className="form-label">Full Name</label>
@@ -91,6 +85,7 @@ const AddNewReview = () => {
 
                     </form>
                 </div>
+                <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src="https://i.pinimg.com/750x/fa/24/87/fa2487ad05c4a8e2437d6ed049ba48ca.jpg" alt="..." style={{ width: '400px' }} /></div>
             </div>
         </section >
     );

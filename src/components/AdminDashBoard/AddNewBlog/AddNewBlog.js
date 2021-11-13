@@ -24,18 +24,12 @@ const AddNewBlog = () => {
 
     return (
         <section className="container section-gap">
-            <div className="row">
-                <div className="col-xl-8 offset-xl-2">
-                    <div className="text-center ">
-                        <h1>Popular Tour</h1>
-                        <p>The World's Largest Selection of Holiday Lettings. Find The Perfect Escape. Discover our popular package and find your soul again.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="row gx-4 gx-lg-5 align-items-center">
-                <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0 rounded-3" src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9cc12656-062f-4911-ac64-ae473064c349/dri-fit-sport-clash-mens-woven-training-shorts-1XRJv3.png" alt="..." /></div>
+            <div className="row gx-4 gx-lg-5">
                 <div className="col-md-6">
+                    <div>
+                        <h1>Add New Blog Post</h1>
+                        <p>Add new usefull content to help people to choose the right show and how they'll maintain the product. </p>
+                    </div>
                     <form className="row g-3" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                         <div className="col-12">
                             <label className="form-label">Blog Title</label>
@@ -73,6 +67,7 @@ const AddNewBlog = () => {
 
                     </form>
                 </div>
+                <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0 rounded-3" src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9cc12656-062f-4911-ac64-ae473064c349/dri-fit-sport-clash-mens-woven-training-shorts-1XRJv3.png" alt="..." /></div>
             </div>
         </section >
     );

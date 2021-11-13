@@ -14,7 +14,7 @@ const SingleProduct = (props) => {
                     </div>
                     <h5 className="fw-bolder">{productName}</h5>
                     <p className="card-text">{productDescription?.slice(0, 100)}</p>
-                    <NavLink to={`/productdetails/${_id}`} className="btn btn-outline-warning">Buy Now</NavLink>
+                    <NavLink to={`/admindashboard/ordernow/${_id}`} className="btn btn-outline-warning">Buy Now</NavLink>
                 </div>
             </div>
         </div>

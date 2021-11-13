@@ -11,12 +11,12 @@ const Blogs = () => {
     }, [])
 
     return (
-        <section className="container section-gap">
+        <section className="container section-divider">
             <div className="row">
                 <div className="col-xl-8 offset-xl-2">
                     <div className="text-center ">
-                        <h1>Popular Tour</h1>
-                        <p>The World's Largest Selection of Holiday Lettings. Find The Perfect Escape. Discover our popular package and find your soul again.</p>
+                        <h1>Our Journals for You</h1>
+                        <p>We have more than 1k authors. They provide nice and well researched contents for your. Our stories that move you and move with you</p>
                     </div>
                 </div>
             </div>

@@ -2,22 +2,21 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SingleProduct from '../../SingleProduct/SingleProduct';
 
-const FeaturedProducts = () => {
+const AllProducts = () => {
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products?type=home')
+        axios.get('http://localhost:5000/products')
             .then(res => setProductsData(res.data))
     }, [])
-
     return (
-        <section className="container section-divider">
+        <section className="container section-gap">
             <div className="row">
-                <div className="col-xl-8 offset-xl-2">
-                    <div className="text-center ">
-                        <h1>Find Awsome Shoes</h1>
-                        <p>The World's Largest shoes shope. We prodive top class of quality. "coz we know how to make shoes that feel comfortable for your feet</p>
-                    </div>
+                <div className="col-xl-6">
+
+                    <h1>Find Awsome Shoes</h1>
+                    <p>The World's Largest shoes shope. We prodive top class of quality. "coz we know how to make shoes that feel comfortable for your feet</p>
+
                 </div>
             </div>
             <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -38,4 +37,4 @@ const FeaturedProducts = () => {
     );
 };
 
-export default FeaturedProducts;
+export default AllProducts; <h2>Products</h2>

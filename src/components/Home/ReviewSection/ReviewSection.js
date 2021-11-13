@@ -16,8 +16,8 @@ const ReviewSection = () => {
                 <div className="row">
                     <div className="col-xl-8 offset-xl-2">
                         <div className="sec-title text-center mb-50">
-                            <h1>What Travellers Say About Us</h1>
-                            <p>  Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim </p>
+                            <h1>What our customers Say About Us</h1>
+                            <p>  Our awsome customers said their words about our service. they said how much good are our products. Our product is not cheap 'coz good products are not comes... </p>
                         </div>
                     </div>
                 </div>

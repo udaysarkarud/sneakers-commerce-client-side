@@ -10,12 +10,12 @@ const ExploreShoes = () => {
             .then(res => setProductsData(res.data))
     }, [])
     return (
-        <section className="container section-gap">
+        <section className="container section-divider">
             <div className="row">
                 <div className="col-xl-8 offset-xl-2">
                     <div className="text-center ">
-                        <h1>Popular Tour</h1>
-                        <p>The World's Largest Selection of Holiday Lettings. Find The Perfect Escape. Discover our popular package and find your soul again.</p>
+                        <h1>Find Awsome Shoes</h1>
+                        <p>The World's Largest shoes shope. We prodive top class of quality. "coz we know how to make shoes that feel comfortable for your feet</p>
                     </div>
                 </div>
             </div>

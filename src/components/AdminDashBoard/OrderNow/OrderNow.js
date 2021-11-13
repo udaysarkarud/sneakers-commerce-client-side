@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import swal from 'sweetalert';
-import useAuth from '../../hook/useAuth';
-const SingleProductDetails = () => {
+import useFirebaseAuth from '../../../hook/useFirebaseAuth';
+
+const OrderNow = () => {
     const { pId } = useParams();
     useEffect(() => {
         axios.get(`http://localhost:5000/products?find=${pId}`)
@@ -17,7 +18,9 @@ const SingleProductDetails = () => {
 
     const [quantity, setQuantity] = useState(1)
     const [bigImg, setBigImg] = useState('')
-    const { userProfile } = useAuth();
+    const { userProfile } = useFirebaseAuth();
+
+    const history = useHistory();
 
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
@@ -38,6 +41,7 @@ const SingleProductDetails = () => {
                             text: `Product Name: ${productName} | Quantity: ${quantity}`,
                             icon: "success",
                         });
+                        history.push('/admindashboard/myorders')
                     }
                 })
         } else {
@@ -64,8 +68,8 @@ const SingleProductDetails = () => {
                         </div>
                     </section>
                     :
-                    <div className="container px-4 px-lg-5 my-5">
-                        <div className="row gx-4 gx-lg-5">
+                    <div className="container px-4 px-lg-5">
+                        <div className="row gx-4 gx-lg-5 align-items-center">
                             <div className="col-md-6">
                                 <img className="img-thumbnail card-img-top mb-5 mb-md-0" src={bigImg || productImg1} alt="..." />
                                 <div className="row my-lg-4">
@@ -164,4 +168,4 @@ const SingleProductDetails = () => {
     );
 };
 
-export default SingleProductDetails;
+export default OrderNow;
