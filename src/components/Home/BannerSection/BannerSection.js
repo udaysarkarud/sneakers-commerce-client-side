@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const BannerSection = () => {
     return (
@@ -9,7 +10,8 @@ const BannerSection = () => {
                         <div className="banner-text-wrap">
                             <h1 className="text-white">Get Your Next Nike @ 20% off</h1>
                             <p className="text-white">For one day only, save 20% on select styles.Ends 9PM PT. Things are better as a Nike Member. Get first and exclusive access to the newest styles & innovation, free shipping, birthday rewards and more.</p>
-                            <a href="/appointment" className="btn btn-outline-light btn-lg">Book Appointment</a>
+
+                            <NavLink to='/exploreshoes' className="btn btn-outline-light btn-lg">By Awsome Sneakers</NavLink>
                         </div>
                     </div>
                     <div className="col-md-6 my-5">

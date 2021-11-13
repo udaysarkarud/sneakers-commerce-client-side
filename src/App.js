@@ -10,6 +10,7 @@ import SecureRoute from './components/SecureRoute/SecureRoute'
 import AdminDashBoard from './components/AdminDashBoard/AdminDashBoard'
 import ExploreShoes from './components/ExploreShoes/ExploreShoes';
 import Footer from './components/Footer/Footer';
+import NotFound from './components/NotFound/NotFound';
 
 
 function App() {
@@ -52,6 +53,10 @@ function App() {
               <AdminDashBoard />
             </SecureRoute>
 
+
+            <Route path='*'>
+              <NotFound />
+            </Route>
           </Switch>
           <Footer />
         </Router>
