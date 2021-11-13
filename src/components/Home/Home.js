@@ -14,9 +14,9 @@ const Home = () => {
             <HighlightedFeatures />
             <FeaturedProducts />
             <BannerInfo />
-            <ContactSection />
-            <BlogSection />
             <ReviewSection />
+            <BlogSection />
+            <ContactSection />
         </div>
     );
 };

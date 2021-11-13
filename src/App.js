@@ -12,6 +12,9 @@ import UserDashBoard from './components/UserDashBoard/UserDashBoard'
 import AddNewProduct from './components/DashBoard/AddNewProduct/AddNewProduct';
 import ExploreShoes from './components/ExploreShoes/ExploreShoes';
 import SingleProductDetails from './components/SingleProductDetails/SingleProductDetails';
+import AddNewReview from './components/DashBoard/AddNewReview/AddNewReview';
+import AddNewBlog from './components/DashBoard/AddNewBlog/AddNewBlog';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -41,13 +44,27 @@ function App() {
               <AddNewProduct />
             </Route>
 
+            <Route path='/addnewblog'>
+              <AddNewBlog />
+            </Route>
+
             <Route path='/exploreshoes'>
               <ExploreShoes />
+            </Route>
+
+            <Route path='/blogs'>
+              <Blogs />
             </Route>
 
 
             <Route path='/productdetails/:pId'>
               <SingleProductDetails />
+            </Route>
+
+
+
+            <Route path='/addnewreview'>
+              <AddNewReview />
             </Route>
 
             <SecureRoute path='/blogs'>
@@ -65,6 +82,7 @@ function App() {
             </SecureRoute>
 
           </Switch>
+          <Footer />
         </Router>
       </AuthProvider>
     </div>

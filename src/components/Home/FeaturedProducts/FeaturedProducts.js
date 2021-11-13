@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
     }, [])
 
     return (
-        <section className="container section-gap">
+        <section className="container section-divider">
             <div className="row">
                 <div className="col-xl-8 offset-xl-2">
                     <div className="text-center ">

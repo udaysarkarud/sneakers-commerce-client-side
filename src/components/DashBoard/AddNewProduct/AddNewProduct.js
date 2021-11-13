@@ -13,11 +13,11 @@ const AddNewProduct = () => {
                 .then(res => {
                     if (res.data.insertedId) {
                         console.log(res.data.insertedId);
-                        reset();
                         swal({
                             title: "New Product Added Successfully",
                             icon: "success",
                         });
+                        reset();
                     }
                 })
         } else {

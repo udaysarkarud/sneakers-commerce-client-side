@@ -120,9 +120,6 @@ const SingleProductDetails = () => {
                                             <label className="form-label">Full Name</label>
 
                                             <input {...register("clientName")} className="form-control" defaultValue={userProfile.displayName} readOnly />
-
-
-                                            {/*  <input {...register("clientName")} type="text" className="form-control" id="clientName" defaultValue={userProfile.displayName} disabled /> */}
                                         </div>
                                         <div className="col-md-6">
                                             <label className="form-label">Email</label>

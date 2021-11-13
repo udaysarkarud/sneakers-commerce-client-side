@@ -1,30 +1,43 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { RatingView } from 'react-simple-star-rating';
+import SingleReview from './../../SingleReview/SingleReview'
 
 const ReviewSection = () => {
+    const [reviewData, setReviewData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/reviews')
+            .then(res => setReviewData(res.data))
+    }, [])
     return (
-        <div>
-            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://dummyimage.com/40x40/ced4da/6c757d" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://dummyimage.com/40x40/ced4da/6c757d" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://dummyimage.com/40x40/ced4da/6c757d" class="d-block w-100" alt="..." />
+        <section className="testimonial-area grey-bg pt-80 pb-100 section-divider">
+            <div className="container">
+                <div className="row">
+                    <div className="col-xl-8 offset-xl-2">
+                        <div className="sec-title text-center mb-50">
+                            <h1>What Travellers Say About Us</h1>
+                            <p>  Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim </p>
+                        </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div className="row">
+                    {
+                        reviewData.length === 0 ?
+                            <section className="container section-gap">
+                                <div className="container">
+                                    <div className="row">
+                                        <img style={{ width: "300px" }} src="https://cdn.lowgif.com/full/31baf3ba3f2592ab-animated-gif-transparent-background-14-gif-images-download.gif" className="rounded mx-auto d-block" alt="..." />
+                                    </div>
+                                </div>
+                            </section>
+                            :
+                            reviewData?.map(review => <SingleReview key={review._id} review={review} />)
+                    }
+
+                </div>
             </div>
-        </div>
+        </section>
     );
 };
 
