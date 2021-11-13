@@ -10,7 +10,7 @@ const MyOrders = () => {
     const [dbLoad, setDbload] = useState(0);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/orders?search=${userProfile.email}`)
+        axios.get(`https://radiant-eyrie-71480.herokuapp.com/orders?search=${userProfile.email}`)
             .then(res => {
                 setOrdersData(res.data)
                 setDbload(dbLoad + 1)
@@ -27,7 +27,7 @@ const MyOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`http://localhost:5000/orders/${orderId}`)
+                    axios.delete(`https://radiant-eyrie-71480.herokuapp.com/orders/${orderId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })

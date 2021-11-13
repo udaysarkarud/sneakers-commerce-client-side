@@ -6,7 +6,7 @@ const Blogs = () => {
     const [blogsData, setBlogsData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/blogs')
+        axios.get('https://radiant-eyrie-71480.herokuapp.com/blogs')
             .then(res => setBlogsData(res.data))
     }, [])
 

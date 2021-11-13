@@ -8,7 +8,7 @@ import useFirebaseAuth from '../../../hook/useFirebaseAuth';
 const OrderNow = () => {
     const { pId } = useParams();
     useEffect(() => {
-        axios.get(`http://localhost:5000/products?find=${pId}`)
+        axios.get(`https://radiant-eyrie-71480.herokuapp.com/products?find=${pId}`)
             .then(res => setProductsData(res.data))
     }, [])
 
@@ -31,7 +31,7 @@ const OrderNow = () => {
         console.log(orderData);
 
         if (data.clientEmail) {
-            axios.post('http://localhost:5000/orders', orderData)
+            axios.post('https://radiant-eyrie-71480.herokuapp.com/orders', orderData)
                 .then(res => {
                     if (res.data.insertedId) {
                         console.log(res.data.insertedId);
