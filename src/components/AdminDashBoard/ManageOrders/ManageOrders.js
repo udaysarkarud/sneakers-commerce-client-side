@@ -7,14 +7,14 @@ const ManageOrders = () => {
     const [dbLoad, setDbload] = useState(0);
 
     useEffect(() => {
-        axios.get('https://radiant-eyrie-71480.herokuapp.com/orders')
+        axios.get('http://localhost:5000/orders')
             .then(res => setOrdersData(res.data))
     }, [dbLoad])
 
     const changeStatus = (orderId) => {
         console.log(orderId)
 
-        axios.put(`https://radiant-eyrie-71480.herokuapp.com/orders/${orderId}`)
+        axios.put(`http://localhost:5000/orders/${orderId}`)
             .then(res => {
                 setDbload(dbLoad + 1)
             })
@@ -30,7 +30,7 @@ const ManageOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`https://radiant-eyrie-71480.herokuapp.com/orders/${orderId}`)
+                    axios.delete(`http://localhost:5000/orders/${orderId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })
@@ -80,7 +80,8 @@ const ManageOrders = () => {
                                         Name: {order.clientName}<br />
                                         Email: {order.clientEmail}<br />
                                         Phone: {order.clientPhone}<br />
-                                        Shipping Address: {order.clientAddress}
+                                        Shipping Address: {order.clientAddress}<br/>
+                                        <b>PaymentID:</b> {order.paymentid}
 
                                         <br /><br /><b>Total Cost:</b><br />
                                         {order.quantity} x {order.productNewPrice} = {order.totalAmount}

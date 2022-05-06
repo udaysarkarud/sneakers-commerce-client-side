@@ -1,18 +1,26 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router';
 import swal from 'sweetalert';
 import useFirebaseAuth from '../../../hook/useFirebaseAuth';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe('pk_test_51Kw9kSLkxl78R6B1cFSCRv3ySaumpLCou7qz4QpsNBfM5jJUjkS0CYkVHr6k7NOTpIhFL3TxRaFDljbW0MM38REv00tdELTy9a');
 
 const OrderNow = () => {
     const { pId } = useParams();
     useEffect(() => {
-        axios.get(`https://radiant-eyrie-71480.herokuapp.com/products?find=${pId}`)
+        axios.get(`http://localhost:5000/products?find=${pId}`)
             .then(res => setProductsData(res.data))
     }, [])
 
     const [productsData, setProductsData] = useState([]);
+    const [placeOrder, setPlaceOrder] = useState(false);
+    const [placeOrderInfo, setPlaceOrderInfo] = useState({})
+
     const { _id, productName, productType, brandName, productOldPrice, productNewPrice, productImg1, productImg2, productImg3, productImg4, productDescription } = productsData
 
 
@@ -22,31 +30,20 @@ const OrderNow = () => {
 
     const history = useHistory();
 
+    const cancelPlaceOrder=()=>{
+        setPlaceOrder(false)
+    }
+
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
     const onSubmit = data => {
         const orderDate = new Date();
         const orderData = { productId: _id, productName, productImg1, ...data, quantity, productNewPrice, totalAmount: quantity * productNewPrice, orderDate: orderDate.toLocaleDateString(), status: 'pending' }
-        console.log(orderData);
+        setPlaceOrderInfo(orderData);
+        setPlaceOrder(true);
 
-        if (data.clientEmail) {
-            axios.post('https://radiant-eyrie-71480.herokuapp.com/orders', orderData)
-                .then(res => {
-                    if (res.data.insertedId) {
-                        console.log(res.data.insertedId);
-                        reset();
-                        swal({
-                            title: "New Order Placed Successfully",
-                            text: `Product Name: ${productName} | Quantity: ${quantity}`,
-                            icon: "success",
-                        });
-                        history.push('/admindashboard/myorders')
-                    }
-                })
-        } else {
-            reset();
-        }
+
 
     };
 
@@ -103,22 +100,17 @@ const OrderNow = () => {
                                     <p className="lead">{productDescription}</p>
 
                                     <div className="input-group mb-3">
-                                        <button onClick={() => quantity > 1 && setQuantity(quantity - 1)} className="btn btn-outline-secondary" type="button" id="button-addon1"><i className="bi bi-dash-circle"></i></button>
+                                        <button disabled={placeOrder?true:false} onClick={() => quantity > 1 && setQuantity(quantity - 1)} className="btn btn-outline-secondary" type="button" id="button-addon1"><i className="bi bi-dash-circle"></i></button>
 
-                                        <input className="" placeholder="" key={quantity} defaultValue={quantity} />
+                                        <input className="text-center" placeholder="" key={quantity} defaultValue={quantity} disabled={placeOrder?true:false}/>
 
-                                        <button onClick={() => setQuantity(quantity + 1)} className="btn btn-outline-secondary"><i className="bi bi-plus-circle"></i></button>
+                                        <button disabled={placeOrder?true:false} onClick={() => setQuantity(quantity + 1)} className="btn btn-outline-secondary"><i className="bi bi-plus-circle"></i></button>
                                     </div>
-                                    {/* <div className="d-flex">
-                                        <button className="btn btn-outline-dark flex-shrink-0" type="button">
-                                            <i className="bi-cart-fill me-1"></i>
-                                            Add to cart
-                                        </button>
-                                    </div> */}
                                 </div>
 
                                 <div className="productInfo">
-                                    <form className="row g-3" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+                                    <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+                                    <fieldset className="row g-3" disabled={placeOrder?true:false}>
 
                                         <div className="col-md-6">
                                             <label className="form-label">Full Name</label>
@@ -140,9 +132,6 @@ const OrderNow = () => {
 
                                             <input className="form-control" key={quantity + 1} defaultValue={parseInt(productNewPrice) * quantity} disabled={true} />
 
-                                            {/* <input key={_id} defaultValue={parseInt(productNewPrice) * quantity} hidden /> */}
-
-                                            {/*  <input {...register("totalAmount")} type="number" className="form-control" id="totalAmount" key={quantity} defaultValue={parseInt(productNewPrice) * quantity} disabled /> */}
                                         </div>
 
                                         <div className="col-md-12">
@@ -150,14 +139,16 @@ const OrderNow = () => {
 
                                             <input {...register("clientAddress")} className="form-control" placeholder="Product Shpping Address" required />
                                         </div>
-
-
-                                        <div className="col-12">
+                                        {!placeOrder && <div className="col-12">
                                             <button type="submit" className="btn btn-primary">Place Order</button>
                                             <button className="btn btn-dark btn-lg btn-block ms-2" type="reset">Clear fields</button>
-                                        </div>
+                                        </div>}
 
+                                        </fieldset>
                                     </form>
+                                    {placeOrder && <Elements stripe={stripePromise}>
+                                        <CheckoutForm orderInfo={placeOrderInfo} cancelPlaceOrder={cancelPlaceOrder}/>
+                                    </Elements>}
                                 </div>
                             </div>
                         </div>

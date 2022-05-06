@@ -1,55 +1,61 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
-const ManageProducts = () => {
-    const [productsData, setProductsData] = useState([]);
+import useAuth from '../../../hook/useAuth';
+
+const MyOrders = () => {
+    const { userProfile } = useAuth();
+
+    const [ordersData, setOrdersData] = useState([]);
     const [dbLoad, setDbload] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
-            .then(res => setProductsData(res.data))
+        axios.get(`http://localhost:5000/orders?search=${userProfile.email}`)
+            .then(res => {
+                setOrdersData(res.data)
+                setDbload(dbLoad + 1)
+            })
     }, [dbLoad])
 
-    const deleteProduct = (proId) => {
+    const deleteOrder = (orderId) => {
         swal({
             title: "Are you sure?",
-            text: "Once deleted, your buyers'll not seee this product",
+            text: "Once deleted, you will not be able track this Order",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`http://localhost:5000/products/${proId}`)
+                    axios.delete(`http://localhost:5000/orders/${orderId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })
-                    swal("Deleted Selected Product successfully", {
+                    swal("Deleted Selected Order successfully", {
                         icon: "success",
                     });
                 } else {
-                    swal("Your users can still order on this product");
+                    swal("You can still tack this Order");
                 }
             });
     }
     return (
         <div>
-            <h2>Manage Products</h2>
+            <h2>Manage Orders</h2>
             <div className="table-responsive">
                 <table className="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Product Img</th>
-                            <th scope="col">Product name</th>
-                            <th scope="col">Product Type</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col">Product info</th>
+                            <th scope="col">Quantity And Price</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            productsData.length === 0 ?
+                            ordersData.length === 0 ?
                                 <section className="container section-gap">
                                     <div className="container">
                                         <div className="row">
@@ -58,17 +64,19 @@ const ManageProducts = () => {
                                     </div>
                                 </section>
                                 :
-                                productsData?.map((product, index) => <tr key={product._id}>
+                                ordersData?.map((order, index) => <tr key={order._id}>
                                     <td>{index + 1}</td>
-                                    <td><img src={product.productImg1} className="img-thumbnail" width='100' /></td>
-                                    <td>{product.productName}</td>
-                                    <td>{product.productType}</td>
-                                    <td>
-                                        {product.productType}<br />
-                                        {product.productOldPrice}
+                                    <td>{order.orderDate}</td>
+                                    <td style={{ maxWidth: '150px' }}>
+                                        {order.productName}<br />
+                                        <img src={order.productImg1} className="img-thumbnail" width='100' />
                                     </td>
                                     <td>
-                                        <button onClick={() => deleteProduct(product._id)} className="btn my-2">Delete</button>
+                                        {order.quantity} x {order.productNewPrice} = {order.totalAmount}
+                                    </td>
+                                    <td>
+                                        <p>Order Status:  {order.status}</p>
+                                        <button onClick={() => deleteOrder(order._id)} className="btn my-2">Cancel Order</button>
                                     </td>
                                 </tr>)
                         }
@@ -79,4 +87,4 @@ const ManageProducts = () => {
     );
 };
 
-export default ManageProducts;
+export default MyOrders;

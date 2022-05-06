@@ -9,7 +9,7 @@ const AddNewProduct = () => {
 
         console.log(data);
         if (data.productName) {
-            axios.post('https://radiant-eyrie-71480.herokuapp.com/products', data)
+            axios.post('http://localhost:5000/products', data)
                 .then(res => {
                     if (res.data.insertedId) {
                         console.log(res.data.insertedId);

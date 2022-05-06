@@ -1,0 +1,14 @@
+        if (paymentIntent.status == 'succeeded') {
+            axios.post('http://localhost:5000/orders', orderData)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        console.log(res.data.insertedId);
+                        swal({
+                            title: "New Order Placed Successfully",
+                            text: `Product Name: ${productName} | Quantity: ${quantity}`,
+                            icon: "success",
+                        });
+                        history.push('/admindashboard/myorders')
+                    }
+                })
+        }

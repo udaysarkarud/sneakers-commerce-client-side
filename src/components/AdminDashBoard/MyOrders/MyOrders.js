@@ -2,20 +2,25 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import useAuth from '../../../hook/useAuth';
-
+/* 
+https://radiant-eyrie-71480.herokuapp.com/
+*/
 const MyOrders = () => {
     const { userProfile } = useAuth();
 
     const [ordersData, setOrdersData] = useState([]);
-    const [dbLoad, setDbload] = useState(0);
+    const [dbLoad, setDbload] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://radiant-eyrie-71480.herokuapp.com/orders?search=${userProfile.email}`)
+        axios.get(`http://localhost:5000/orders?search=${userProfile.email}`,{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('idToken')}`
+            }
+           })
             .then(res => {
                 setOrdersData(res.data)
-                setDbload(dbLoad + 1)
             })
-    }, [dbLoad])
+    }, [])
 
     const deleteOrder = (orderId) => {
         swal({
@@ -27,7 +32,7 @@ const MyOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`https://radiant-eyrie-71480.herokuapp.com/orders/${orderId}`)
+                    axios.delete(`http://localhost:5000/orders/${orderId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })

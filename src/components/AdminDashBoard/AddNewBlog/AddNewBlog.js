@@ -8,12 +8,15 @@ const AddNewBlog = () => {
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/blogs', data)
-            .then(res => {
-                swal("Great!", "Your Blog Post Added successfully", "success");
-                reset()
-                console.log(res.data);
-            })
+
+        console.log(data.blogImg[0])
+
+        /*   axios.post('http://localhost:5000/blogs', data)
+              .then(res => {
+                  swal("Great!", "Your Blog Post Added successfully", "success");
+                  reset()
+                  console.log(res.data);
+              }) */
 
 
     };
@@ -54,7 +57,9 @@ const AddNewBlog = () => {
                         <div className="col-md-6">
                             <label className="form-label">Blog Image</label>
 
-                            <input {...register("blogImg")} className="form-control" placeholder="Image URL" required />
+                            <input type="file" {...register("blogImg")}
+                                accept="image/png, image/gif, image/jpeg"
+                                className="form-control" placeholder="Image URL" required />
                         </div>
 
                         <div className="col-12">

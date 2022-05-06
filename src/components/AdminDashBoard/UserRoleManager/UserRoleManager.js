@@ -9,7 +9,7 @@ const UserRoleManager = () => {
 
     const onSubmit = data => {
         const newAdmin = { ...data, type: 'rolemanagement' }
-        axios.put('https://radiant-eyrie-71480.herokuapp.com/usersdata', newAdmin)
+        axios.put('http://localhost:5000/usersdata', newAdmin)
             .then(res => {
                 console.log(res)
                 if (res.data.modifiedCount === 1) {

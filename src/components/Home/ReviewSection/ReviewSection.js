@@ -7,7 +7,7 @@ const ReviewSection = () => {
     const [reviewData, setReviewData] = useState([]);
 
     useEffect(() => {
-        axios.get('https://radiant-eyrie-71480.herokuapp.com/reviews')
+        axios.get('http://localhost:5000/reviews')
             .then(res => setReviewData(res.data))
     }, [])
     return (

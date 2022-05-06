@@ -5,7 +5,7 @@ import SingleBlog from '../../SingleBlog/SingleBlog';
 const BlogSection = () => {
     const [blogsData, setBlogsData] = useState([]);
     useEffect(() => {
-        axios.get('https://radiant-eyrie-71480.herokuapp.com/blogs?type=home')
+        axios.get('http://localhost:5000/blogs?type=home')
             .then(res => {
                 setBlogsData(res.data)
             })
