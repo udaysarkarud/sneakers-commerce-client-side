@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [dbLoad, setDbload] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://radiant-eyrie-71480.herokuapp.com/products')
             .then(res => setProductsData(res.data))
     }, [dbLoad])
 
@@ -20,7 +20,7 @@ const ManageProducts = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`http://localhost:5000/products/${proId}`)
+                    axios.delete(`https://radiant-eyrie-71480.herokuapp.com/products/${proId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })

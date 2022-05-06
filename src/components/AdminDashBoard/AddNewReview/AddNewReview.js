@@ -19,7 +19,7 @@ const AddNewReview = () => {
         const reviewData = { ...data, clientImg: userProfile?.photoURL || 'https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png', clientRating }
         console.log(reviewData);
 
-        axios.post('http://localhost:5000/reviews', reviewData)
+        axios.post('https://radiant-eyrie-71480.herokuapp.com/reviews', reviewData)
             .then(res => {
                 swal("Great!", "Your Review Added successfully", "success");
                 reset()

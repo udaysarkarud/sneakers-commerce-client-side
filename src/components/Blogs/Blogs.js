@@ -1,27 +1,28 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import SingleProduct from '../../SingleProduct/SingleProduct';
+import SingleBlog from './../SingleBlog/SingleBlog';
 
-const AllProducts = () => {
-    const [productsData, setProductsData] = useState([]);
+const Blogs = () => {
+    const [blogsData, setBlogsData] = useState([]);
 
     useEffect(() => {
-        axios.get('https://radiant-eyrie-71480.herokuapp.com/products')
-            .then(res => setProductsData(res.data))
+        axios.get('https://radiant-eyrie-71480.herokuapp.com/blogs')
+            .then(res => setBlogsData(res.data))
     }, [])
+
     return (
-        <section className="container section-gap">
+        <section className="container section-divider">
             <div className="row">
-                <div className="col-xl-6">
-
-                    <h1>Find Awsome Shoes</h1>
-                    <p>The World's Largest shoes shope. We prodive top class of quality. "coz we know how to make shoes that feel comfortable for your feet</p>
-
+                <div className="col-xl-8 offset-xl-2">
+                    <div className="text-center ">
+                        <h1>Our Journals for You</h1>
+                        <p>We have more than 1k authors. They provide nice and well researched contents for your. Our stories that move you and move with you</p>
+                    </div>
                 </div>
             </div>
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="row">
                 {
-                    productsData.length === 0 ?
+                    blogsData.length === 0 ?
                         <section className="container section-gap">
                             <div className="container">
                                 <div className="row">
@@ -30,11 +31,11 @@ const AllProducts = () => {
                             </div>
                         </section>
                         :
-                        productsData?.map(product => <SingleProduct key={product._id} product={product} />)
+                        blogsData?.map(blog => <SingleBlog key={blog._id} blog={blog} />)
                 }
             </div>
         </section>
     );
 };
 
-export default AllProducts; <h2>Products</h2>
+export default Blogs;

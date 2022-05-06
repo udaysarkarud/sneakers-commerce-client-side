@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [dbLoad, setDbload] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/orders?search=${userProfile.email}`,{
+        axios.get(`https://radiant-eyrie-71480.herokuapp.com/orders?search=${userProfile.email}`,{
             headers: {
                 authorization: `Bearer ${localStorage.getItem('idToken')}`
             }
@@ -32,7 +32,7 @@ const MyOrders = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    axios.delete(`http://localhost:5000/orders/${orderId}`)
+                    axios.delete(`https://radiant-eyrie-71480.herokuapp.com/orders/${orderId}`)
                         .then(res => {
                             setDbload(dbLoad + 1)
                         })

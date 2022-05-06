@@ -11,7 +11,7 @@ const AddNewBlog = () => {
 
         console.log(data.blogImg[0])
 
-        /*   axios.post('http://localhost:5000/blogs', data)
+        /*   axios.post('https://radiant-eyrie-71480.herokuapp.com/blogs', data)
               .then(res => {
                   swal("Great!", "Your Blog Post Added successfully", "success");
                   reset()

@@ -6,7 +6,7 @@ const FeaturedProducts = () => {
     const [productsData, setProductsData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/products?type=home')
+        axios.get('https://radiant-eyrie-71480.herokuapp.com/products?type=home')
             .then(res => setProductsData(res.data))
     }, [])
 

@@ -153,7 +153,7 @@ const useFirebaseAuth = () => {
     //UserData Store on Db
     const userDatatoDb = (userInfo) => {
         console.log(userInfo)
-        axios.put('http://localhost:5000/usersdata', userInfo)
+        axios.put('https://radiant-eyrie-71480.herokuapp.com/usersdata', userInfo)
             .then(res => {
                 console.log(res)
             })
@@ -161,7 +161,7 @@ const useFirebaseAuth = () => {
 
     //Check User Role
     useEffect(() => {
-        axios.get(`http://localhost:5000/usersdata/${userProfile.email}`)
+        axios.get(`https://radiant-eyrie-71480.herokuapp.com/usersdata/${userProfile.email}`)
             .then(res => {
                 setUserRole(res.data)
             })

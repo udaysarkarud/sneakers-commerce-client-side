@@ -11,7 +11,7 @@ const CheckoutForm = ({ orderInfo, cancelPlaceOrder }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        axios.post('http://localhost:5000/create-payment-intent', { amount: orderInfo.totalAmount })
+        axios.post('https://radiant-eyrie-71480.herokuapp.com/create-payment-intent', { amount: orderInfo.totalAmount })
             .then(res => setClientSecret(res.data.clientSecret))
     }, [orderInfo.totalAmount])
 
@@ -65,21 +65,28 @@ const CheckoutForm = ({ orderInfo, cancelPlaceOrder }) => {
         }
         else {
             if (paymentIntent.status == 'succeeded') {
-                axios.post('http://localhost:5000/orders', {...orderInfo,paymentid:paymentIntent.id})
+                axios.post('https://radiant-eyrie-71480.herokuapp.com/orders', { ...orderInfo, paymentid: paymentIntent.id })
                     .then(res => {
                         if (res.data.insertedId) {
-                            console.log(res.data.insertedId);
-                            history.push('/admindashboard/myorders') 
+                            /* nodemailer */
+                            axios.post('https://radiant-eyrie-71480.herokuapp.com/send-confirmation-email', { ...orderInfo, paymentid: paymentIntent.id, orderId: res.data.insertedId })
+                                .then(res => {
+                                    console.log(res.status)
+                                    /* change url */
+                                    history.push('/admindashboard/myorders')
+                                });
+
                         }
                     })
             }
 
             swal({
                 title: 'Your Payment Processed Successfully',
-                text: 'New Order Placed Done',
+                text: 'Please Check Your Email for More Details!',
                 icon: "success",
             });
-           /*  console.log(paymentIntent) */
+
+            /*  console.log(paymentIntent) */
         }
 
     }
@@ -109,6 +116,7 @@ const CheckoutForm = ({ orderInfo, cancelPlaceOrder }) => {
                 <div className="col-12">
                     <button type="submit" className="btn btn-primary" disabled={!stripe}>Pay Now {orderInfo.totalAmount}</button>
                     <button className="btn btn-dark btn-lg btn-block ms-2" type="reset" onClick={cancelPlaceOrder}>Cancel</button>
+                    
                 </div>
             </form>
         </div>

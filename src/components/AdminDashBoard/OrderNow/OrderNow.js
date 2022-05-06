@@ -13,7 +13,7 @@ const stripePromise = loadStripe('pk_test_51Kw9kSLkxl78R6B1cFSCRv3ySaumpLCou7qz4
 const OrderNow = () => {
     const { pId } = useParams();
     useEffect(() => {
-        axios.get(`http://localhost:5000/products?find=${pId}`)
+        axios.get(`https://radiant-eyrie-71480.herokuapp.com/products?find=${pId}`)
             .then(res => setProductsData(res.data))
     }, [])
 
