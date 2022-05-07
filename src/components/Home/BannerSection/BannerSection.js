@@ -16,7 +16,7 @@ const BannerSection = () => {
                     </div>
                     <div className="col-md-6 my-5">
                         <div className="banner-text-wrap justify-content-center">
-                            <img className="img-fluid" src="https://www.freepnglogos.com/uploads/shoes-png/download-nike-shoes-transparent-png-for-designing-projects-16.png" width="400" />
+                            <img className="img-fluid" src="https://res.cloudinary.com/coremailud/image/upload/v1651926282/sneakerimg/nike-shoes-transparent-png.png" width="400" />
                         </div>
                     </div>
                 </div>

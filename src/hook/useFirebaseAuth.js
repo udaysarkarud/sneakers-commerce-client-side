@@ -138,10 +138,6 @@ const useFirebaseAuth = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUserProfile(user)
-                getIdToken(user)
-                    .then((idToken) => {                        
-                        localStorage.setItem('idToken',`${idToken}`)
-                    })
             } else {
                 setUserProfile({})
             }

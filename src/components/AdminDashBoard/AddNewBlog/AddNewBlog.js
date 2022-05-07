@@ -7,9 +7,10 @@ const AddNewBlog = () => {
     const { userProfile } = useAuth();
 
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-    const onSubmit = data => {
+    const onSubmit = async(data) => {
 
-        console.log(data.blogImg[0])
+        console.log(data.blogImg)
+        console.log(data)
 
         /*   axios.post('https://radiant-eyrie-71480.herokuapp.com/blogs', data)
               .then(res => {
@@ -18,6 +19,20 @@ const AddNewBlog = () => {
                   console.log(res.data);
               }) */
 
+        const fileInfo =await data.blogImg[0]
+        const formData = new FormData()
+        formData.append('file', fileInfo)
+        formData.append('upload_preset', 'plwdtmz7')
+
+        axios.post('https://api.cloudinary.com/v1_1/coremailud/image/upload', formData).then(res => {
+            delete data.blogImg
+            axios.post('https://radiant-eyrie-71480.herokuapp.com/blogs', { ...data, blogImg: res.data.url })
+                .then(res => {
+                    swal("Great!", "Your Blog Post Added successfully", "success");
+                    reset()
+                    console.log(res.data);
+                })
+        })
 
     };
 
@@ -59,14 +74,14 @@ const AddNewBlog = () => {
 
                             <input type="file" {...register("blogImg")}
                                 accept="image/png, image/gif, image/jpeg"
-                                className="form-control" placeholder="Image URL" required />
+                                className="form-control" placeholder="Select Img" required />
                         </div>
 
                         <div className="col-12">
                             <textarea {...register("blogDescription")} className="form-control" placeholder="Description" rows="6" required />
                         </div>
-                        <div className="col-12">
-                            <button type="submit" className="btn btn-primary">Add New Blog</button>
+                        <div className="col-12 mb-3">
+                            <button type="submit" className="btn btn-primary ms-2 mb-2 mb-md-0">Add New Blog</button>
                             <button className="btn btn-dark btn-lg btn-block ms-2" type="reset">Clear fields</button>
                         </div>
 

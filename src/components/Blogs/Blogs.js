@@ -7,7 +7,7 @@ const Blogs = () => {
 
     useEffect(() => {
         axios.get('https://radiant-eyrie-71480.herokuapp.com/blogs')
-            .then(res => setBlogsData(res.data))
+            .then(res => setBlogsData(res.data.reverse()))
     }, [])
 
     return (

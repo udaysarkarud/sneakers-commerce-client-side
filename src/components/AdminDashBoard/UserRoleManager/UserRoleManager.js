@@ -36,8 +36,8 @@ const UserRoleManager = () => {
 
                             <input {...register("email", { required: true })} placeholder="email" className="form-control" />
                         </div>
-                        <div className="col-12">
-                            <button type="submit" className="btn btn-primary">Add Product</button>
+                        <div className="col-12 mb-3">
+                            <button type="submit" className="btn btn-primary ms-2 mb-2 mb-md-0">Add Product</button>
                             <button className="btn btn-dark btn-lg btn-block ms-2" type="reset">Clear fields</button>
                         </div>
                     </form>

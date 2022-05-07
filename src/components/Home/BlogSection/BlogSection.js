@@ -7,7 +7,7 @@ const BlogSection = () => {
     useEffect(() => {
         axios.get('https://radiant-eyrie-71480.herokuapp.com/blogs?type=home')
             .then(res => {
-                setBlogsData(res.data)
+                setBlogsData(res.data.reverse())
             })
     }, [])
     return (

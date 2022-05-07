@@ -87,7 +87,7 @@ header .navbar-expand-lg .navbar-nav .nav-link {
 /*Hero Banner*/
 
 .hero-banner{
-	background: url("https://cdn.pixabay.com/photo/2016/03/27/19/39/jump-1283915_960_720.jpg") no-repeat;
+	background: url("https://res.cloudinary.com/coremailud/image/upload/v1651926620/sneakerimg/jump-banner-bg.jpg") no-repeat;
 	background-size: cover;
 	padding: 100px 0px;
 	min-height: 500px;

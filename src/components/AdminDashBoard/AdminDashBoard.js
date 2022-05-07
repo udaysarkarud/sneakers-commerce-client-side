@@ -29,6 +29,63 @@ const AdminDashBoard = () => {
                 <div className="my-5">
                     <div className="container-fluid">
                         <div className="row">
+                            <div className='d-md-none border-bottom mb-3 pb-3'>
+                                <ul className="nav">
+                                    {
+                                        userRole.admin ?
+                                            <>
+                                                <li>
+                                                    <NavLink className="nav-link" to={`${url}`}><i className="bi bi-speedometer2"></i> Dashboard</NavLink>
+                                                </li>
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/manageorders`}>
+                                                        <i className="bi bi-archive"></i> Manage Orders</Link>
+                                                </li>
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/addnewproduct`}>
+                                                        <i className="bi bi-bag-check"></i> Add New Product</Link>
+                                                </li>
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/manageproducts`}>
+                                                        <i className="bi bi-bag-check"></i> Manage Products</Link>
+                                                </li>
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/addnewblog`}><i className="bi bi-file-earmark-break"></i> Add New Blog Post</Link>
+                                                </li>
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/manageusersrole`}><i className="bi bi-person-video2"></i> Manage Users Role</Link>
+                                                </li>
+                                            </>
+                                            :
+                                            <>
+                                                <li>
+                                                    <NavLink className="nav-link" to={`${url}`}><i className="bi bi-speedometer2"></i> Dashboard</NavLink>
+                                                </li>
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/payments`}><i className="bi bi-paypal"></i> Payments</Link>
+                                                </li>
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/exploreproducts`}><i className="bi bi-bag-check"></i> Explore Products</Link>
+                                                </li>
+
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/myorders`}><i className="bi bi-archive"></i> My Orders</Link>
+                                                </li>
+
+
+                                                <li>
+                                                    <Link className="nav-link" to={`${url}/addreview`}><i className="bi bi-heart-half"></i> Add Reviews</Link>
+                                                </li>
+                                            </>
+                                    }
+                                </ul>
+                            </div>
                             <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                                 <div className="position-sticky pt-3">
                                     <ul className="nav flex-column">
@@ -78,7 +135,9 @@ const AdminDashBoard = () => {
                                                     <li>
                                                         <Link className="nav-link" to={`${url}/myorders`}><i className="bi bi-archive"></i> My Orders</Link>
                                                     </li>
-
+                                                    <li>
+                                                        <Link className="nav-link" to={`${url}/payments`}><i className="bi bi-paypal"></i> Payments</Link>
+                                                    </li>
 
                                                     <li>
                                                         <Link className="nav-link" to={`${url}/addreview`}><i className="bi bi-heart-half"></i> Add Reviews</Link>

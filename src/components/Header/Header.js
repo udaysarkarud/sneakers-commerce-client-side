@@ -17,9 +17,9 @@ const Header = () => {
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand text-white fw-bolder fs-2" to='/'>
-                            <img className="img-fluid" src="https://youthful-noyce-92cc85.netlify.app/logo-2-retina.png" alt="" width="153" />
+                            <img className="img-fluid" src="https://res.cloudinary.com/coremailud/image/upload/v1651926848/sneakerimg/logo-white.png" alt="" width="153" />
                         </NavLink>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>

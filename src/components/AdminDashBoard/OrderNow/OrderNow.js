@@ -102,7 +102,7 @@ const OrderNow = () => {
                                     <div className="input-group mb-3">
                                         <button disabled={placeOrder?true:false} onClick={() => quantity > 1 && setQuantity(quantity - 1)} className="btn btn-outline-secondary" type="button" id="button-addon1"><i className="bi bi-dash-circle"></i></button>
 
-                                        <input className="text-center" placeholder="" key={quantity} defaultValue={quantity} disabled={placeOrder?true:false}/>
+                                        <input className="text-center" style={{width:'30%'}} placeholder="" key={quantity} defaultValue={quantity} disabled={placeOrder?true:false}/>
 
                                         <button disabled={placeOrder?true:false} onClick={() => setQuantity(quantity + 1)} className="btn btn-outline-secondary"><i className="bi bi-plus-circle"></i></button>
                                     </div>
@@ -140,7 +140,8 @@ const OrderNow = () => {
                                             <input {...register("clientAddress")} className="form-control" placeholder="Product Shpping Address" required />
                                         </div>
                                         {!placeOrder && <div className="col-12">
-                                            <button type="submit" className="btn btn-primary">Place Order</button>
+                                            <button type="submit" className="btn btn-primary ms-2 mb-2 mb-md-0">Place Order</button>
+{/*                                             <button className="btn btn-dark btn-lg btn-block ms-2" type="reset">Add to Cart</button> */}
                                             <button className="btn btn-dark btn-lg btn-block ms-2" type="reset">Clear fields</button>
                                         </div>}
 

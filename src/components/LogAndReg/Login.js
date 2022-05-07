@@ -50,7 +50,7 @@ const Login = () => {
                                             <form onSubmit={handleSubmit(onSubmit)}>
 
                                                 <div className="d-flex align-items-center mb-3 pb-1">
-                                                    <img className="img-fluid" src="https://youthful-noyce-92cc85.netlify.app/logo-1.png" alt="" width="153" />
+                                                    <img className="img-fluid" src="https://res.cloudinary.com/coremailud/image/upload/v1651926848/sneakerimg/logo-black.png" alt="" width="153" />
                                                 </div>
 
                                                 <h5 className="fw-normal mb-3 pb-3">Sign into
